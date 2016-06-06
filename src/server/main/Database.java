@@ -23,11 +23,12 @@ public class Database {
 
     }
 
-    public void createTheme(String id){
+    public Theme createTheme(String id){
 
         Theme theme = new Theme(id,this);
         themes.put(id,theme);
 
+        return theme;
     }
 
     public boolean newUser(String username,String password){
@@ -40,5 +41,8 @@ public class Database {
         return true;
     }
 
+    public HashMap<String, Theme> getThemes() {
+        return this.themes;
+    }
 
 }

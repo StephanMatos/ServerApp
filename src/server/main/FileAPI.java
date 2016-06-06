@@ -1,12 +1,9 @@
 package server.main;
 
-import org.yaml.snakeyaml.Yaml;
-
+import org.yaml.snakeyaml.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -14,30 +11,49 @@ import java.util.Map;
  */
 public class FileAPI {
 
-    public void loadfile(String fileName) throws FileNotFoundException {
-        // The path of your YAML file.
-        final String fileName2 = "test.yml";
-        ArrayList<String> key = new ArrayList<String>();
-        ArrayList<String> value = new ArrayList<String>();
+    //Map<String, YamlConfiguration> yamls = new HashMap<String, YamlConfiguration>();
+    private static String setupQT, setupQuestion, setupQuestionAnswer1, setupQuestionAnswer2, setupQuestionAnswer3, setupQuestionAnswer4;
+    private static Theme theme;
+
+    public static void loadQuestionsFile(String fileName, Database database) throws FileNotFoundException {
         Yaml yaml = new Yaml();
 
-        try {
-            InputStream ios = new FileInputStream(new File(fileName));
+        System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(
+                fileName)))));
 
-            // Parse the YAML file and return the output as a series of Maps and Lists
-            Map< String, Object> result = (Map< String, Object>) yaml.load(ios);
-            for (Object name : result.keySet()) {
+        Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) yaml
+                .load(new FileInputStream(new File(fileName)));
 
-                key.add(name.toString());
-                value.add(result.get(name).toString());
+        for (String key : values.keySet()) {
+            Map<String, String> subValues = values.get(key);
+            System.out.println(key);
+
+            for (String subValueKey : subValues.keySet()) {
+                //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));
+                switch (subValueKey) {
+                    case "title":
+                        setupQT = subValues.get(subValueKey);
+                    case "question":
+                        setupQuestion = subValues.get(subValueKey);
+                    case "answer1":
+                        setupQuestionAnswer1 = subValues.get(subValueKey);
+                    case "answer2":
+                        setupQuestionAnswer2 = subValues.get(subValueKey);
+                    case "answer3":
+                        setupQuestionAnswer3 = subValues.get(subValueKey);
+                    case "answer4":
+                        setupQuestionAnswer4 = subValues.get(subValueKey);
+                    default:
+                        System.out.println(subValues.get(subValueKey));
+                }
             }
+            if (!database.getThemes().containsKey(setupQT)) {
+                theme = database.createTheme(setupQT);
+            }
+            theme.makeQuestion(setupQuestion, setupQuestionAnswer1, setupQuestionAnswer2, setupQuestionAnswer3, setupQuestionAnswer4, key);
 
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        System.out.println(key + " " + value);
     }
-
 
 }

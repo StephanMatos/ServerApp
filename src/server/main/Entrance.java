@@ -1,5 +1,6 @@
 package server.main;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,19 +10,25 @@ import java.net.Socket;
  */
 public class Entrance {
 
-    private Database database;
+    private static Database database;
 
     private ServerSocket server = null;
 
 
     public static void main(String[] args){
 
-        Entrance entrance = new Entrance();
+        database = new Database();
+        try {
+            FileAPI.loadQuestionsFile("data/questions.yml", database);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Entrance entrance = new Entrance();
 
     }
 
     public Entrance(){
-        this.database = new Database();
         try{
             server = new ServerSocket(2048);
 
