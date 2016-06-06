@@ -1,3 +1,5 @@
+package server.main;
+
 /**
  * Created by Stephan on 06-06-2016.
  */

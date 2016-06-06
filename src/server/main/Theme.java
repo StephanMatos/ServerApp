@@ -1,3 +1,5 @@
+package server.main;
+
 import java.util.HashMap;
 
 /**
