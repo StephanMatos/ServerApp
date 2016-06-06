@@ -13,9 +13,9 @@ public class ThreadListen extends Thread {
     private boolean active;
 
 
-    public ThreadListen(User user, Socket clientSocket){
+    public ThreadListen( Socket clientSocket){
 
-        this.user = user;
+
         this.active = true;
         try {
             this.buf = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

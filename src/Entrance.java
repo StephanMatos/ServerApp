@@ -41,6 +41,7 @@ public class Entrance {
                 System.out.println("Could not connect user");
             }
             ThreadListen thread = new ThreadListen(clientSocket);
+            thread.start();
 
         }
     }
