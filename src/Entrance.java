@@ -37,15 +37,10 @@ public class Entrance {
 
             try{
                 clientSocket = welcome.accept();
-
-
+                System.out.println("User connected");
             }catch (IOException e){
                 System.out.println("Could not connect user");
             }
-
         }
-
-
     }
-
 }
