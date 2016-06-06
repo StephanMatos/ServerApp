@@ -6,7 +6,7 @@ import java.net.Socket;
 /**
  * Created by Stephan on 06-06-2016.
  */
-public class ThreadListen {
+public class ThreadListen extends Thread {
 
     private User user;
     private BufferedReader buf;
@@ -31,6 +31,7 @@ public class ThreadListen {
                 String firstMessage = buf.readLine();
 
                 if(firstMessage.equals("REGISTER")){
+
 
                 }
                 else if(firstMessage.equals("LOGIN")){

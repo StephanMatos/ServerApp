@@ -9,7 +9,7 @@ public class Entrance {
 
     private Database database;
 
-    private ServerSocket welcome = null;
+    private ServerSocket server = null;
 
 
     public static void main(String[] args){
@@ -21,8 +21,7 @@ public class Entrance {
     public Entrance(){
         this.database = new Database();
         try{
-            welcome = new ServerSocket(2048);
-
+            server = new ServerSocket(2048);
 
         }catch (IOException e){
             System.out.println("could not establish a server socket");
@@ -36,11 +35,13 @@ public class Entrance {
             Socket clientSocket = null;
 
             try{
-                clientSocket = welcome.accept();
+                clientSocket = server.accept();
                 System.out.println("User connected");
             }catch (IOException e){
                 System.out.println("Could not connect user");
             }
+            ThreadListen thread = new ThreadListen(clientSocket);
+
         }
     }
 }

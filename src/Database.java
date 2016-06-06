@@ -5,7 +5,8 @@ import java.util.HashMap;
  */
 public class Database {
 
-    private String user;
+    private String username;
+    private User user;
 
     private HashMap<String, Theme> themes;
     private HashMap<String, User> users;
@@ -27,16 +28,15 @@ public class Database {
 
     }
 
-    public boolean newUser(String username, User userclass){
+    public boolean newUser(String username,String password){
 
-        this.user = username;
         if(users.containsKey(username)){
             return false;
         }
-        users.put(user,userclass);
-
+        User user = new User(username,password);
+        users.put(username,user);
         return true;
-
     }
+
 
 }
