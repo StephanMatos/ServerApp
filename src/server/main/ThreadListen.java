@@ -70,8 +70,9 @@ public class ThreadListen extends Thread {
                     }
                     case "NEXT_QUESTION": {
                         String themeName = buf.readLine();
-                        String message = entrance.database.getThemes().get(themeName).getRandomQuestion().getQuestion();
-                        for (String answer : entrance.database.getThemes().get(themeName).getRandomQuestion().getAnswers()) {
+                        Question question = entrance.database.getThemes().get(themeName).getRandomQuestion();
+                        String message = question.getQuestion();
+                        for (String answer : question.getAnswers()) {
                             message = message + "§" + answer;
                         }
                         pw.print(message);
