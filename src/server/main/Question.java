@@ -1,5 +1,8 @@
 package server.main;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /**
  * Created by Stephan on 06-06-2016.
  */
@@ -17,6 +20,27 @@ public class Question {
         this.answer4 = a4;
         this.theme = theme;
 
+    }
+
+    public ArrayList<String> getAnswers() {
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add(this.answer1);
+        answers.add(this.answer2);
+        answers.add(this.answer3);
+        answers.add(this.answer4);
+        Collections.shuffle(answers);
+        return answers;
+    }
+
+    public String getQuestion() {
+        return this.question;
+    }
+
+    public boolean checkAnswer(String answer) {
+        if (answer == this.answer1) {
+            return true;
+        }
+        return false;
     }
 
 }

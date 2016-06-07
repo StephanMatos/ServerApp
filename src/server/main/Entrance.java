@@ -26,7 +26,8 @@ public class Entrance {
         this.database = new Database();
 
         try {
-            FileAPI.loadQuestionsFile("data/questions.yml", database);
+            FileAPI.loadQuestions("data/questions.yml", database);
+            FileAPI.loadUsers("data/users.yml", database);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -51,7 +52,7 @@ public class Entrance {
             }catch (IOException e){
                 System.out.println("Could not connect user");
             }
-            ThreadListen thread = new ThreadListen(clientSocket, this);
+            ThreadListen thread = new ThreadListen(clientSocket);
             thread.start();
 
         }

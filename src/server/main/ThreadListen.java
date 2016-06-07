@@ -13,7 +13,6 @@ public class ThreadListen extends Thread {
     private User user;
     private BufferedReader buf;
     private boolean active;
-    private Entrance parent;
 
 
     public ThreadListen( Socket clientSocket, Entrance entrance){
@@ -32,24 +31,28 @@ public class ThreadListen extends Thread {
         while(active){
             try{
                 String firstMessage = buf.readLine();
-
-                if(firstMessage.equals("REGISTER")){
-                    String username = buf.readLine();
-                    String password = buf.readLine();
-                    parent.database.newUser(username,password);
-
-
-                }
-                else if(firstMessage.equals("LOGIN")){
-
-                }else if(firstMessage.equals("REFRESH")){
-
-                }else if(firstMessage.equals("INVITE")){
-
-                }else if(firstMessage.equals("THEME")){
-
-                }else if(firstMessage.equals("ANSWER")){
-
+                switch (firstMessage) {
+                    case "REGISTER":
+                        // TODO something here
+                        break;
+                    case "LOGIN":
+                        // TODO something here
+                        break;
+                    case "REFRESH":
+                        // TODO something here
+                        break;
+                    case "INVITE":
+                        // TODO something here
+                        break;
+                    case "THEME":
+                        // TODO something here
+                        break;
+                    case "ANSWER":
+                        // TODO something here
+                        break;
+                    default:
+                        // TODO something here
+                        break;
                 }
 
             } catch(IOException e){

@@ -13,9 +13,10 @@ public class FileAPI {
 
     //Map<String, YamlConfiguration> yamls = new HashMap<String, YamlConfiguration>();
     private static String setupQT, setupQuestion, setupQuestionAnswer1, setupQuestionAnswer2, setupQuestionAnswer3, setupQuestionAnswer4;
+    private static String setupUser, setupPass;
     private static Theme theme;
 
-    public static void loadQuestionsFile(String fileName, Database database) throws FileNotFoundException {
+    public static void loadQuestions(String fileName, Database database) throws FileNotFoundException {
         Yaml yaml = new Yaml();
 
         System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(
@@ -52,6 +53,35 @@ public class FileAPI {
             }
             theme.makeQuestion(setupQuestion, setupQuestionAnswer1, setupQuestionAnswer2, setupQuestionAnswer3, setupQuestionAnswer4, key);
 
+        }
+
+    }
+
+    public static void loadUsers(String fileName, Database database) throws FileNotFoundException {
+        Yaml yaml = new Yaml();
+
+        System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(
+                fileName)))));
+
+        Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) yaml
+                .load(new FileInputStream(new File(fileName)));
+
+        for (String key : values.keySet()) {
+            Map<String, String> subValues = values.get(key);
+            System.out.println(key);
+
+            for (String subValueKey : subValues.keySet()) {
+                //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));
+                switch (subValueKey) {
+                    case "username":
+                        setupUser = subValues.get(subValueKey);
+                    case "password":
+                        setupPass = subValues.get(subValueKey);
+                    default:
+                        System.out.println(subValues.get(subValueKey));
+                }
+            }
+            database.newUser(setupUser, setupPass);
         }
 
     }
