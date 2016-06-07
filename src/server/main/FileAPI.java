@@ -17,15 +17,14 @@ public class FileAPI {
     public static void loadQuestions(String fileName, Database database) throws FileNotFoundException {
         Yaml yaml = new Yaml();
 
-        System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(
-                fileName)))));
+        //System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(fileName)))));
 
         Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) yaml
                 .load(new FileInputStream(new File(fileName)));
 
         for (String key : values.keySet()) {
             Map<String, String> subValues = values.get(key);
-            System.out.println(key);
+            //System.out.println(key);
 
             for (String subValueKey : subValues.keySet()) {
                 //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));
@@ -58,15 +57,14 @@ public class FileAPI {
     public static void loadUsers(String fileName, Database database) throws FileNotFoundException {
         Yaml yaml = new Yaml();
 
-        System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(
-                fileName)))));
+        //System.out.println(yaml.dump(yaml.load(new FileInputStream(new File(fileName)))));
 
         Map<String, Map<String, String>> values = (Map<String, Map<String, String>>) yaml
                 .load(new FileInputStream(new File(fileName)));
 
         for (String key : values.keySet()) {
             Map<String, String> subValues = values.get(key);
-            System.out.println(key);
+            //System.out.println(key);
 
             for (String subValueKey : subValues.keySet()) {
                 //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));

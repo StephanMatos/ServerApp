@@ -17,7 +17,6 @@ public class ThreadListen extends Thread {
     private boolean active;
     private Entrance entrance;
 
-
     public ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
 
@@ -65,18 +64,11 @@ public class ThreadListen extends Thread {
                         break;
                     }
                     case "ANSWER": {
-                        // TODO something here
+                        String answer = buf.readLine();
                         break;
                     }
                     case "NEXT_QUESTION": {
-                        String themeName = buf.readLine();
-                        Question question = entrance.database.getThemes().get(themeName).getRandomQuestion();
-                        String message = question.getQuestion();
-                        for (String answer : question.getAnswers()) {
-                            message = message + "§" + answer;
-                        }
-                        pw.print(message);
-                        pw.flush();
+
                         break;
                     }
                     default: {
