@@ -1,6 +1,7 @@
 package server.main;
 
 import java.util.HashMap;
+import java.util.StringJoiner;
 
 /**
  * Created by Stephan on 06-06-2016.
@@ -14,9 +15,7 @@ public class Database {
     private HashMap<String, User> users;
 
 
-
     public Database(){
-
 
         users = new HashMap<String, User>();
         themes = new HashMap<String, Theme>();
@@ -44,6 +43,17 @@ public class Database {
 
     public HashMap<String, Theme> getThemes() {
         return this.themes;
+    }
+    public boolean login(String username, String password){
+
+        if(users.get(username).getPassword().equals(password){
+            return true;
+        }
+
+        System.out.println("user does not exist/Wrong password");
+        return false;
+
+
     }
 
 

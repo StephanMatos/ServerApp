@@ -52,7 +52,7 @@ public class Entrance {
             }catch (IOException e){
                 System.out.println("Could not connect user");
             }
-            ThreadListen thread = new ThreadListen(clientSocket);
+            ThreadListen thread = new ThreadListen(clientSocket,this);
             thread.start();
 
         }

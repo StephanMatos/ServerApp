@@ -37,7 +37,6 @@ public class ThreadListen extends Thread {
                         String username = buf.readLine();
                         String password = buf.readLine();
                         entrance.database.newUser(username,password);
-
                         break;
                     case "LOGIN":
                         // TODO something here
