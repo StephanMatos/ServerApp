@@ -3,6 +3,7 @@ package server.main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
@@ -12,6 +13,7 @@ public class ThreadListen extends Thread {
 
     private User user;
     private BufferedReader buf;
+    private PrintWriter pw;
     private boolean active;
     private Entrance entrance;
 
@@ -33,26 +35,39 @@ public class ThreadListen extends Thread {
             try{
                 String firstMessage = buf.readLine();
                 switch (firstMessage) {
-                    case "REGISTER":
+                    case "REGISTER": {
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        entrance.database.newUser(username,password);
+                        entrance.database.newUser(username, password);
+                        pw.print("OK");
+                        pw.flush();
                         break;
-                    case "LOGIN":
+                    }
+                    case "LOGIN": {
+                        String username = buf.readLine();
+                        String password = buf.readLine();
+                        entrance.database.login(username,password);
+                        pw.print("OK");
+                        pw.flush();
+
+                        break;
+                    }
+                    case "REFRESH": {
                         // TODO something here
                         break;
-                    case "REFRESH":
+                    }
+                    case "INVITE": {
                         // TODO something here
                         break;
-                    case "INVITE":
+                    }
+                    case "THEME": {
                         // TODO something here
                         break;
-                    case "THEME":
+                    }
+                    case "ANSWER": {
                         // TODO something here
                         break;
-                    case "ANSWER":
-                        // TODO something here
-                        break;
+                    }
                     default:
                         // TODO something here
                         break;
