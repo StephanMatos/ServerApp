@@ -10,25 +10,25 @@ import java.net.Socket;
  */
 public class Entrance {
 
-    private static Database database;
+    private Database database;
 
     private ServerSocket server = null;
 
 
     public static void main(String[] args){
 
-        database = new Database();
-        try {
-            FileAPI.loadQuestionsFile("data/questions.yml", database);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        // Entrance entrance = new Entrance();
+        Entrance entrance = new Entrance();
 
     }
 
     public Entrance(){
+        database = new Database();
+        try {
+            FileAPI.loadQuestions("data/questions.yml", database);
+            FileAPI.loadUsers("data/users.yml", database);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         try{
             server = new ServerSocket(2048);
 

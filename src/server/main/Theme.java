@@ -27,4 +27,12 @@ public class Theme {
 
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public HashMap<String, Question> getQuestions() {
+        return this.questionHashMap;
+    }
+
 }
