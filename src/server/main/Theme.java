@@ -1,12 +1,14 @@
 package server.main;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created by Stephan on 06-06-2016.
  */
 public class Theme {
 
+    private Random randomGenerator;
     private String title;
 
     private HashMap<String, Question> questionHashMap;
@@ -31,8 +33,9 @@ public class Theme {
         return this.title;
     }
 
-    public HashMap<String, Question> getQuestions() {
-        return this.questionHashMap;
+    public Question getRandomQuestion() {
+        int index = randomGenerator.nextInt(this.questionHashMap.size());
+        return this.questionHashMap.get(index);
     }
 
 }
