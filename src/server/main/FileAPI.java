@@ -1,15 +1,13 @@
 package server.main;
 
-//import org.yaml.snakeyaml.*;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+
+import java.io.File;
+import org.yaml.snakeyaml.*;
+import java.io.FileInputStream;
 import java.util.Map;
 
-/**
- * Created by Stephan on 06-06-2016.
- */
-/*public class FileAPI {
+public class FileAPI {
 
     //Map<String, YamlConfiguration> yamls = new HashMap<String, YamlConfiguration>();
     private static String setupQT, setupQuestion, setupQuestionAnswer1, setupQuestionAnswer2, setupQuestionAnswer3, setupQuestionAnswer4;
@@ -86,4 +84,4 @@ import java.util.Map;
 
     }
 
-}*/
+}

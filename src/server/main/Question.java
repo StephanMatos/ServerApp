@@ -2,6 +2,7 @@ package server.main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 /**
  * Created by Stephan on 06-06-2016.
@@ -37,10 +38,7 @@ public class Question {
     }
 
     public boolean checkAnswer(String answer) {
-        if (answer == this.answer1) {
-            return true;
-        }
-        return false;
+        return Objects.equals(answer, this.answer1);
     }
 
 }

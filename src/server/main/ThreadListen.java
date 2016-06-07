@@ -68,9 +68,20 @@ public class ThreadListen extends Thread {
                         // TODO something here
                         break;
                     }
-                    default:
+                    case "NEXT_QUESTION": {
+                        String themeName = buf.readLine();
+                        String message = entrance.database.getThemes().get(themeName).getRandomQuestion().getQuestion();
+                        for (String answer : entrance.database.getThemes().get(themeName).getRandomQuestion().getAnswers()) {
+                            message = message + "§" + answer;
+                        }
+                        pw.print(message);
+                        pw.flush();
+                        break;
+                    }
+                    default: {
                         // TODO something here
                         break;
+                    }
                 }
 
             } catch(IOException e){
