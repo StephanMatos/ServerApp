@@ -46,7 +46,7 @@ public class Database {
     }
     public boolean login(String username, String password){
 
-        if(users.get(username).getPassword().equals(password){
+        if(users.get(username).getPassword().equals(password)){
             return true;
         }
 
