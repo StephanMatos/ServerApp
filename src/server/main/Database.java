@@ -9,12 +9,15 @@ public class Database {
 
     private HashMap<String, Theme> themes;
     private HashMap<String, User> users;
+    private HashMap<String,Board> Boards;
 
 
     public Database(){
 
         users = new HashMap<String, User>();
         themes = new HashMap<String, Theme>();
+        Boards = new HashMap<String,Board>();
+
         user = new User("frederik","1234");
         users.put("frederik",user);
         System.out.println(users);
@@ -27,6 +30,12 @@ public class Database {
         themes.put(id,theme);
 
         return theme;
+    }
+
+    public void CreateBoard(String id, Board board){
+
+        Boards.put(id,board);
+
     }
 
     public boolean newUser(String username,String password){
@@ -52,6 +61,27 @@ public class Database {
         users.get(username).getPassword().equals(password);
 
         return true;
+    }
+
+    public HashMap<String, User> getUsers(){
+
+        return users;
+    }
+
+    public User getUser(String s){
+
+        return users.get(s);
+    }
+    public Theme getTheme(String s){
+
+        return themes.get(s);
+
+    }
+
+
+
+    public Board getBoard(String s ){
+        return Boards.get(s);
     }
 
 }

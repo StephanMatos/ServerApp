@@ -11,23 +11,27 @@ public class Board {
     private int points2;
     private Theme theme;
     private Question currentQuestion;
+    private Database database;
 
-    public Board(User user1, User user2) {
+
+    public Board(User user1, User user2,Database database, Theme theme) {
         this.user1 = user1;
         this.user2 = user2;
         this.points1 = 0;
         this.points2 = 0;
+        this.database = database;
     }
 
-    public void setRandomQuestion() {
-        this.currentQuestion = entrance.database.getThemes().get(this.theme).getRandomQuestion();
-        String message = this.currentQuestion.getQuestion();
-        for (String answer : this.currentQuestion.getAnswers()) {
-            message = message + "§" + answer;
-        }
-        // Opretteren starter
+    public Question setRandomQuestion() {
 
-        // TODO Første svare den ene det spørgsmål også den anden
+        this.currentQuestion = database.getThemes().get(this.theme).getRandomQuestion();
+
+        return this.currentQuestion;
+    }
+
+    public Question setNextQuestion(){
+
+        return setRandomQuestion();
     }
 
     public void userAnswered(String answer) {
@@ -37,6 +41,27 @@ public class Board {
         else {
             // TODO prevent any further answers
         }
+    }
+    public Question getCurrentQuestion(){
+        return currentQuestion;
+    }
+
+    public User getUser1(){
+        return user1;
+    }
+    public User getUser2(){
+        return  user2;
+    }
+
+    public Integer setScore(User user){
+        if(user.equals(user1)){
+            points1++;
+        }
+        if(user.equals(user2)){
+            points2++;
+        }
+        return points1+points2;
+
     }
 
 }
