@@ -46,13 +46,12 @@ public class Database {
     }
     public boolean login(String username, String password){
 
-        if(users.get(username).getPassword().equals(password){
+        if(users.get(username).getPassword().equals(password)){
             return true;
         }
 
         System.out.println("user does not exist/Wrong password");
         return false;
-
 
     }
 

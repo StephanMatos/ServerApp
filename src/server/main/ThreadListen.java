@@ -33,29 +33,38 @@ public class ThreadListen extends Thread {
             try{
                 String firstMessage = buf.readLine();
                 switch (firstMessage) {
-                    case "REGISTER":
+                    case ("REGISTER"):{
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        entrance.database.newUser(username,password);
+                        entrance.database.newUser(username, password);
                         break;
-                    case "LOGIN":
+                    }
+                    case ("LOGIN"):{
+                        String username = buf.readLine();
+                        String password = buf.readLine();
+                        entrance.database.login(username,password);
+                        break;}
+
+                    case ("REFRESH"): {
                         // TODO something here
                         break;
-                    case "REFRESH":
+                    }
+                    case ("INVITE"): {
                         // TODO something here
                         break;
-                    case "INVITE":
+                    }
+                    case ("THEME"): {
                         // TODO something here
                         break;
-                    case "THEME":
+                    }
+                    case ("ANSWER"): {
                         // TODO something here
                         break;
-                    case "ANSWER":
+                    }
+                    default: {
                         // TODO something here
                         break;
-                    default:
-                        // TODO something here
-                        break;
+                    }
                 }
 
             } catch(IOException e){
