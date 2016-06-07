@@ -38,11 +38,13 @@ public class Database {
         }
         User user = new User(username,password);
         users.put(username,user);
+        System.out.println("user is created");
         return true;
     }
 
     public HashMap<String, Theme> getThemes() {
         return this.themes;
     }
+
 
 }

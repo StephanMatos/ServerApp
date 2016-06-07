@@ -10,25 +10,27 @@ import java.net.Socket;
  */
 public class Entrance {
 
-    private static Database database;
+    public Database database;
 
     private ServerSocket server = null;
 
 
     public static void main(String[] args){
 
-        database = new Database();
+        Entrance entrance = new Entrance();
+        entrance.listen();
+
+    }
+
+    public Entrance(){
+        this.database = new Database();
+
         try {
             FileAPI.loadQuestionsFile("data/questions.yml", database);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        // Entrance entrance = new Entrance();
-
-    }
-
-    public Entrance(){
         try{
             server = new ServerSocket(2048);
 
@@ -49,7 +51,7 @@ public class Entrance {
             }catch (IOException e){
                 System.out.println("Could not connect user");
             }
-            ThreadListen thread = new ThreadListen(clientSocket);
+            ThreadListen thread = new ThreadListen(clientSocket, this);
             thread.start();
 
         }
