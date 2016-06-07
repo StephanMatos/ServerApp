@@ -13,10 +13,11 @@ public class ThreadListen extends Thread {
     private User user;
     private BufferedReader buf;
     private boolean active;
+    private Entrance entrance;
 
 
     public ThreadListen( Socket clientSocket, Entrance entrance){
-        this.parent = entrance;
+        this.entrance = entrance;
 
         this.active = true;
         try {
@@ -33,7 +34,10 @@ public class ThreadListen extends Thread {
                 String firstMessage = buf.readLine();
                 switch (firstMessage) {
                     case "REGISTER":
-                        // TODO something here
+                        String username = buf.readLine();
+                        String password = buf.readLine();
+                        entrance.database.newUser(username,password);
+
                         break;
                     case "LOGIN":
                         // TODO something here
