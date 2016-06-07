@@ -32,11 +32,20 @@ public class ThreadListen extends Thread {
         while(active){
             try{
                 String firstMessage = buf.readLine();
+
+                if (firstMessage == "Register") {
+                    String username = buf.readLine();
+                    String password = buf.readLine();
+                    entrance.database.newUser(username,password);
+
+                } else {
+                    String username = buf.readLine();
+                    String password = buf.readLine();
+                    entrance.database.newUser(username,password);
+                }
+
                 switch (firstMessage) {
                     case "REGISTER":
-                        String username = buf.readLine();
-                        String password = buf.readLine();
-                        entrance.database.newUser(username,password);
                         break;
                     case "LOGIN":
                         // TODO something here
