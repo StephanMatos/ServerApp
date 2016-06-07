@@ -1,7 +1,6 @@
 package server.main;
 
 import java.util.HashMap;
-import java.util.StringJoiner;
 
 public class Database {
 
@@ -16,6 +15,9 @@ public class Database {
 
         users = new HashMap<String, User>();
         themes = new HashMap<String, Theme>();
+        user = new User("frederik","1234");
+        users.put("frederik",user);
+        System.out.println(users);
 
     }
 
@@ -43,13 +45,13 @@ public class Database {
     }
     public boolean login(String username, String password){
 
-        if(users.get(username).getPassword().equals(password)){
-            return true;
+        if(!users.containsKey(username)){
+            System.out.println("user does not exist");
+            return false;
         }
+        users.get(username).getPassword().equals(password);
 
-        System.out.println("user does not exist/Wrong password");
-        return false;
-
+        return true;
     }
 
 }

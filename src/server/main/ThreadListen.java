@@ -23,6 +23,7 @@ public class ThreadListen extends Thread {
         this.active = true;
         try {
             this.buf = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            pw = new PrintWriter(clientSocket.getOutputStream());
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -38,17 +39,18 @@ public class ThreadListen extends Thread {
                         String username = buf.readLine();
                         String password = buf.readLine();
                         entrance.database.newUser(username, password);
-                        pw.print("OK");
+                        pw.println("OK");
                         pw.flush();
                         break;
                     }
                     case "LOGIN": {
                         String username = buf.readLine();
                         String password = buf.readLine();
+                        System.out.println(username+password);
                         entrance.database.login(username,password);
-                        pw.print("OK");
+                        pw.println("OK");
                         pw.flush();
-
+                        System.out.println("Hej med dig jeg virkede");
                         break;
                     }
                     case "REFRESH": {
@@ -78,7 +80,7 @@ public class ThreadListen extends Thread {
                 }
 
             } catch(IOException e){
-                System.out.println("e"+"hej");
+                System.out.println("e");
             }
 
 
