@@ -64,21 +64,16 @@ public class Database {
     }
 
     public HashMap<String, User> getUsers(){
-
         return users;
     }
 
     public User getUser(String s){
-
         return users.get(s);
     }
+
     public Theme getTheme(String s){
-
         return themes.get(s);
-
     }
-
-
 
     public Board getBoard(String s ){
         return Boards.get(s);

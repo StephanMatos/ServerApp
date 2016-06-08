@@ -42,6 +42,7 @@ public class Board {
             // TODO prevent any further answers
         }
     }
+
     public Question getCurrentQuestion(){
         return currentQuestion;
     }
@@ -49,6 +50,7 @@ public class Board {
     public User getUser1(){
         return user1;
     }
+
     public User getUser2(){
         return  user2;
     }

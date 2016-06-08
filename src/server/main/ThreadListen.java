@@ -121,7 +121,7 @@ public class ThreadListen extends Thread {
                         break;
                     }
                     default: {
-                        // TODO something here
+                        System.out.println("Should have recieved type but got: " + firstMessage);
                         break;
                     }
                 }
