@@ -19,9 +19,11 @@ public class ThreadListen extends Thread {
     private Entrance entrance;
     private Board currentBoard;
     private String id;
+    private Socket ClientSocket;
 
     public ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
+        this.ClientSocket = clientSocket;
 
 
         this.active = true;
@@ -43,6 +45,8 @@ public class ThreadListen extends Thread {
                         String username = buf.readLine();
                         String password = buf.readLine();
                         entrance.database.newUser(username, password);
+                        entrance.database.login(username,password);
+                        System.out.println(username+password+entrance.database.getUsers());
                         pw.println("OK");
                         pw.flush();
                         break;
@@ -119,6 +123,12 @@ public class ThreadListen extends Thread {
                         pw.flush();
 
                         break;
+                    }
+                    case"LOGOUT":{
+                        pw.close();
+                        buf.close();
+                        ClientSocket.close();
+
                     }
                     default: {
                         // TODO something here
