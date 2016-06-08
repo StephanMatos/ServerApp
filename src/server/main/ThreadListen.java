@@ -40,6 +40,9 @@ public class ThreadListen extends Thread {
         while(active){
             try{
                 String firstMessage = buf.readLine();
+                if(firstMessage == null){
+                    firstMessage = "LOGOUT";
+                }
                 switch (firstMessage) {
                     case "REGISTER": {
                         String username = buf.readLine();
@@ -128,10 +131,13 @@ public class ThreadListen extends Thread {
                         pw.close();
                         buf.close();
                         ClientSocket.close();
+                        active = false;
+                        System.out.print("System closed");
 
+                        break;
                     }
                     default: {
-                        System.out.println("Should have recieved type but got: " + firstMessage);
+                        System.out.println("Should have received type but got: " + firstMessage);
                         break;
                     }
                 }
