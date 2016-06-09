@@ -1,7 +1,6 @@
 package server.main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -43,5 +42,31 @@ public class FileReader {
             }
         }
         //return BuildClients;
+    }
+
+    public static void createUserFile(User user) {
+        String ID = user.getUsername() + ".txt";
+        //String ID = new TimeStamp().toString();
+        File chatFile = new File("data/users/" + ID);
+        try {
+            if (chatFile.createNewFile()) {
+                System.out.println("Successfully created new file:" + ID);
+            };
+        } catch (IOException e) {
+            System.out.println("Failed creating file:" + ID);
+        }
+        try {
+            FileWriter outFile = new FileWriter(chatFile, true);
+            PrintWriter out = new PrintWriter(outFile);
+
+            out.println(user.getPassword());
+
+            out.close();
+            outFile.close();
+
+        }
+        catch (Exception e) {
+            System.out.println("Failed creating file:" + ID);
+        }
     }
 }
