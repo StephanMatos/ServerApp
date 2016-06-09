@@ -43,12 +43,12 @@ public class ThreadListen extends Thread {
                 if(firstMessage == null){
                     firstMessage = "LOGOUT";
                 }
-                System.out.println("Modtog besked Type: " + firstMessage);
+                System.out.println("Got first message type: " + firstMessage);
                 switch (firstMessage) {
                     case "REGISTER": {
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        System.out.println("Forsøger at oprette brugernavn: " + username + " " + password);
+                        System.out.println("Trying to create user: " + username + " " + password);
                         Boolean parsed = true;
                         if (!entrance.database.newUser(username, password)) {
                             parsed = false;
@@ -57,12 +57,12 @@ public class ThreadListen extends Thread {
                             parsed = false;
                         }
                         if (parsed) {
-                            System.out.println("Oprettelse af bruger: OK!");
+                            System.out.println("Created user: OK!");
                             pw.println("OK");
                             pw.flush();
                         }
                         else {
-                            System.out.println("Oprettelse af bruger: FAILED!");
+                            System.out.println("Created user: FAILED!");
                             pw.println("FAIL");
                             pw.flush();
                         }
@@ -71,18 +71,18 @@ public class ThreadListen extends Thread {
                     case "LOGIN": {
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        System.out.println("Forsøger at login med brugernavn: " + username + " " + password);
+                        System.out.println("Trying to login with: " + username + " " + password);
                         Boolean parsed = true;
                         if (!entrance.database.login(username,password)) {
                             parsed = false;
                         }
                         if (parsed) {
-                            System.out.println("Login af bruger: OK!");
+                            System.out.println("Login user: OK!");
                             pw.println("OK");
                             pw.flush();
                         }
                         else {
-                            System.out.println("Login af bruger: FAILED!");
+                            System.out.println("Login user: FAILED!");
                             pw.println("FAIL");
                             pw.flush();
                         }
@@ -161,7 +161,7 @@ public class ThreadListen extends Thread {
                         break;
                     }
                     default: {
-                        System.out.println("Should have received type but got: " + firstMessage);
+                        System.out.println("ERROR: Should have received type but got: " + firstMessage);
                         break;
                     }
                 }
