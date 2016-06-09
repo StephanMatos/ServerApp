@@ -46,7 +46,7 @@ public class Database {
         }
         User user = new User(username,password);
         users.put(username,user);
-        FileReader.createUserFile(user);
+        //FileReader.createUserFile(user);
         System.out.println("user created: " + username + " " + password);
         return true;
     }
