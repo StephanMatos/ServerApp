@@ -54,17 +54,17 @@ public class Database {
     public HashMap<String, Theme> getThemes() {
         return this.themes;
     }
+
     public boolean login(String username, String password){
 
-        if(!users.containsKey(username)){
+        if (!users.containsKey(username)) {
             System.out.println("User does not exist!");
             return false;
         }
-        if (users.get(username).getPassword().equals(password)) {
+        if (!users.get(username).getPassword().equals(password)) {
             System.out.println("Wrong password! " + users.get(username).getPassword() + " " + password);
             return false;
         }
-
         return true;
     }
 
