@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by Stephan on 06-06-2016.
- */
 public class Entrance {
 
     public Database database;

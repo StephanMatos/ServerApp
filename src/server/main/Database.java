@@ -16,10 +16,11 @@ public class Database {
         themes = new HashMap<String, Theme>();
         Boards = new HashMap<String,Board>();
 
-        // Pre defineret teamer, brugere og spørgsmål
-        createTheme("Matematik 1");
-        createTheme("Digital");
-        createTheme("Programmering");
+        // hard-coded defineret teamer, brugere og spørgsmål
+        createTheme("Tele-Datanet");
+        createTheme("Programming");
+        createTheme("Mathematics 1");
+        createTheme("Digital-Communication");
 
     }
 
