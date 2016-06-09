@@ -6,10 +6,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Objects;
 
-/**
- * Created by Stephan on 06-06-2016.
- */
+
 public class ThreadListen extends Thread {
 
     private User user;
@@ -43,7 +42,7 @@ public class ThreadListen extends Thread {
                 if(firstMessage == null){
                     firstMessage = "LOGOUT";
                 }
-                System.out.println("Got first message type: " + firstMessage);
+                System.out.println("Got firstMessage type: " + firstMessage);
                 switch (firstMessage) {
                     case "REGISTER": {
                         String username = buf.readLine();
@@ -88,25 +87,37 @@ public class ThreadListen extends Thread {
                         }
                         break;
                     }
+                    case "MATCH": {
+                        // The answer if the player accepted or denied the game invited to.
+                        System.out.println("");
+                        String answer = buf.readLine();
+                        if (answer == "true") {
+                            System.out.println("User Accepted!");
+                        }
+
+                        break;
+                    }
                     case "REFRESH": {
                         // TODO something here
                         break;
                     }
                     case "INVITE": {
+                        System.out.println("Waiting for theme and user inputs...");
                         String theme = buf.readLine();
                         String user2 = buf.readLine();
+                        System.out.println("Got Theme:" + theme + " - User: " + user2);
                         if(!entrance.database.getUsers().containsKey(user2)){
                             pw.println("User does not exist");
                             pw.flush();
 
                         }else{
-                            this.currentBoard = new Board(user,entrance.database.getUser(user2),entrance.database,entrance.database.getTheme(theme));
                             String id = String.valueOf(System.currentTimeMillis());
-                            entrance.database.CreateBoard(id,currentBoard);
+                            this.currentBoard = entrance.database.CreateBoard(id, this.user.getUsername(), user2, theme);
                             pw.println("OK");
                             pw.flush();
                             Question question = currentBoard.setRandomQuestion();
                             String q = question.getQuestion();
+                            System.out.println("Sent OK and prepares the question: " + q);
                             ArrayList arrayList = question.getAnswers();
                             String a1 = arrayList.get(0).toString();
                             String a2 = arrayList.get(1).toString();
@@ -118,22 +129,34 @@ public class ThreadListen extends Thread {
                             pw.println(a3);
                             pw.println(a4);
                             pw.flush();
+                            System.out.println("Question sucessfully sent!");
                         }
                         break;
                     }
                     case "THEME":{
-                        // TODO something here
+                        String changedTheme = buf.readLine();
+                        currentBoard.changeTheme(changedTheme);
+                        System.out.println("Successfully changed theme in board to: " + changedTheme);
                         break;
                     }
                     case "ANSWER":{
                         String answer = buf.readLine();
-                        if(currentBoard.getCurrentQuestion().checkAnswer(answer)) {
+                        System.out.println("Got answer:" + answer);
+                        String correctOne = currentBoard.getCurrentQuestion().getRightAnswer();
+                        if(Objects.equals(correctOne, answer)) {
+                            System.out.println("Correct answer!");
                             currentBoard.setScore(user);
                         }
+                        else {
+                            System.out.println("Wrong answer!");
+                        }
+                        pw.println(correctOne);
+                        pw.flush();
                         break;
                     }
                     case "NEXT_QUESTION":{
 
+                        System.out.println("Getting next question! (Could be the same)");
                         Question question = currentBoard.setNextQuestion();
 
                         String q = question.getQuestion();
@@ -148,7 +171,7 @@ public class ThreadListen extends Thread {
                         pw.println(a3);
                         pw.println(a4);
                         pw.flush();
-
+                        System.out.println("Suceesfully sent question!");
                         break;
                     }
                     case"LOGOUT":{

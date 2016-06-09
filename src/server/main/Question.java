@@ -41,4 +41,8 @@ public class Question {
         return Objects.equals(answer, this.answer1);
     }
 
+    public String getRightAnswer() {
+        return this.answer4;
+    }
+
 }

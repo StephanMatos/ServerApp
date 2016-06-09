@@ -10,7 +10,6 @@ public class Database {
     private HashMap<String, User> users;
     private HashMap<String,Board> Boards;
 
-
     public Database(){
 
         users = new HashMap<String, User>();
@@ -32,10 +31,11 @@ public class Database {
         return theme;
     }
 
-    public void CreateBoard(String id, Board board){
+    public Board CreateBoard(String id, String user1, String user2, String theme){
 
+        Board board = new Board(this.getUser(user1),this.getUser(user2),this,this.getTheme(theme));
         Boards.put(id,board);
-
+        return board;
     }
 
     public boolean newUser(String username,String password){

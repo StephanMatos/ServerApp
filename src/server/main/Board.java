@@ -22,6 +22,10 @@ public class Board {
         this.database = database;
     }
 
+    public void changeTheme(String newtheme) {
+        this.theme = database.getTheme(newtheme);
+    }
+
     public Question setRandomQuestion() {
 
         this.currentQuestion = database.getThemes().get(this.theme).getRandomQuestion();
