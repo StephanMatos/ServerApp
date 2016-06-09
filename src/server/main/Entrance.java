@@ -25,12 +25,15 @@ public class Entrance {
     public Entrance(){
         this.database = new Database();
 
-        /*try {
-            FileAPI.loadQuestions("data/questions.yml", database);
-            FileAPI.loadUsers("data/users.yml", database);
+        try {
+            //FileAPI.loadQuestions("data/questions.yml", database);
+            //FileAPI.loadUsers("data/users.yml", database);
+            FileReader.loadUsers(database);
+            FileReader.loadQuestions(database);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }*/
+        }
+
 
         try{
             server = new ServerSocket(2048);

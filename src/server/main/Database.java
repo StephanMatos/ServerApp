@@ -5,7 +5,6 @@ import java.util.HashMap;
 public class Database {
 
     private String username;
-    private User user;
 
     private HashMap<String, Theme> themes;
     private HashMap<String, User> users;
@@ -18,9 +17,10 @@ public class Database {
         themes = new HashMap<String, Theme>();
         Boards = new HashMap<String,Board>();
 
-        user = new User("frederik","1234");
-        users.put("frederik",user);
-        System.out.println(users);
+        // Pre defineret teamer, brugere og spørgsmål
+        createTheme("Matematik 1");
+        createTheme("Digital");
+        createTheme("Programmering");
 
     }
 
@@ -45,7 +45,7 @@ public class Database {
         }
         User user = new User(username,password);
         users.put(username,user);
-        System.out.println("user is created");
+        System.out.println("user created: " + username + " " + password);
         return true;
     }
 

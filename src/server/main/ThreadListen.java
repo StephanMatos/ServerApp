@@ -143,9 +143,8 @@ public class ThreadListen extends Thread {
                 }
             }catch(IOException e){
                 System.out.println("e");
+
             }
-
-
 
         }
     }

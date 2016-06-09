@@ -1,4 +1,5 @@
-/*package server.main;
+/*
+package server.main;
 
 import java.io.FileNotFoundException;
 
@@ -29,20 +30,34 @@ public class FileAPI {
             for (String subValueKey : subValues.keySet()) {
                 //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));
                 switch (subValueKey) {
-                    case "title":
+                    case "theme": {
                         setupQT = subValues.get(subValueKey);
-                    case "question":
+                        break;
+                    }
+                    case "question": {
                         setupQuestion = subValues.get(subValueKey);
-                    case "answer1":
+                        break;
+                    }
+                    case "answer1": {
                         setupQuestionAnswer1 = subValues.get(subValueKey);
-                    case "answer2":
+                        break;
+                    }
+                    case "answer2": {
                         setupQuestionAnswer2 = subValues.get(subValueKey);
-                    case "answer3":
+                        break;
+                    }
+                    case "answer3": {
                         setupQuestionAnswer3 = subValues.get(subValueKey);
-                    case "answer4":
+                        break;
+                    }
+                    case "answer4": {
                         setupQuestionAnswer4 = subValues.get(subValueKey);
-                    default:
-                        System.out.println(subValues.get(subValueKey));
+                        break;
+                    }
+                    default: {
+                        System.out.println("Error: " + subValueKey);
+                        break;
+                    }
                 }
             }
             if (!database.getThemes().containsKey(setupQT)) {
@@ -67,14 +82,22 @@ public class FileAPI {
             //System.out.println(key);
 
             for (String subValueKey : subValues.keySet()) {
-                //System.out.println(String.format("\t%s === %s", subValueKey, subValues.get(subValueKey)));
-                switch (subValueKey) {
-                    case "username":
+                //System.out.println(String.format(subValueKey + " == " + subValues.get(subValueKey)));
+
+                String stringValue = subValueKey;
+                switch (stringValue) {
+                    case "username": {
                         setupUser = subValues.get(subValueKey);
-                    case "password":
+                        break;
+                    }
+                    case "password": {
                         setupPass = subValues.get(subValueKey);
-                    default:
-                        System.out.println(subValues.get(subValueKey));
+                        break;
+                    }
+                    default: {
+                        System.out.println("Error: " + stringValue);
+                        break;
+                    }
                 }
             }
             database.newUser(setupUser, setupPass);
@@ -83,4 +106,5 @@ public class FileAPI {
     }
 
 }
+
 */
