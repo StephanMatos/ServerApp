@@ -91,7 +91,7 @@ public class ThreadListen extends Thread {
                         // The answer if the player accepted or denied the game invited to.
                         System.out.println("");
                         String answer = buf.readLine();
-                        if (answer == "true") {
+                        if (Objects.equals(answer, "true")) {
                             System.out.println("User Accepted!");
                         }
 
@@ -145,7 +145,7 @@ public class ThreadListen extends Thread {
                         String correctOne = currentBoard.getCurrentQuestion().getRightAnswer();
                         if(Objects.equals(correctOne, answer)) {
                             System.out.println("Correct answer!");
-                            currentBoard.setScore(user);
+                            currentBoard.givePoint(user);
                         }
                         else {
                             System.out.println("Wrong answer!");
@@ -155,10 +155,9 @@ public class ThreadListen extends Thread {
                         break;
                     }
                     case "NEXT_QUESTION":{
-
                         System.out.println("Getting next question! (Could be the same)");
-                        Question question = currentBoard.setNextQuestion();
-
+                        Question question = currentBoard.setRandomQuestion();
+                        currentBoard.resetAnsweredUsers();
                         String q = question.getQuestion();
                         ArrayList arrayList = question.getAnswers();
                         String a1 = arrayList.get(0).toString();
@@ -189,8 +188,14 @@ public class ThreadListen extends Thread {
                     }
                 }
             }catch(IOException e){
-                System.out.println("e");
-
+                System.out.println("Connection error!");
+                active = false;
+                pw.close();
+                try {
+                    ClientSocket.close();
+                } catch (IOException e1) {
+                    break;
+                }
             }
 
         }
