@@ -60,7 +60,7 @@ public class Database {
             return false;
         }
         if (users.get(username).getPassword().equals(password)) {
-            System.out.println("Wrong password!");
+            System.out.println("Wrong password! " + users.get(username).getPassword() + " " + password);
             return false;
         }
 
