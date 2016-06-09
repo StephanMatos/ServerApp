@@ -55,10 +55,13 @@ public class Database {
     public boolean login(String username, String password){
 
         if(!users.containsKey(username)){
-            System.out.println("user does not exist");
+            System.out.println("User does not exist!");
             return false;
         }
-        users.get(username).getPassword().equals(password);
+        if (users.get(username).getPassword().equals(password)) {
+            System.out.println("Wrong password!");
+            return false;
+        }
 
         return true;
     }
