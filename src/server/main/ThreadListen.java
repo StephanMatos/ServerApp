@@ -43,25 +43,49 @@ public class ThreadListen extends Thread {
                 if(firstMessage == null){
                     firstMessage = "LOGOUT";
                 }
+                System.out.println("Modtog besked Type: " + firstMessage);
                 switch (firstMessage) {
                     case "REGISTER": {
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        entrance.database.newUser(username, password);
-                        entrance.database.login(username,password);
-                        System.out.println(username+password+entrance.database.getUsers());
-                        pw.println("OK");
-                        pw.flush();
+                        System.out.println("Forsøger at oprette brugernavn: " + username + " " + password);
+                        Boolean parsed = true;
+                        if (!entrance.database.newUser(username, password)) {
+                            parsed = false;
+                        }
+                        if (!entrance.database.login(username,password)) {
+                            parsed = false;
+                        }
+                        if (parsed) {
+                            System.out.println("Oprettelse af bruger: OK!");
+                            pw.println("OK");
+                            pw.flush();
+                        }
+                        else {
+                            System.out.println("Oprettelse af bruger: FAILED!");
+                            pw.println("FAIL");
+                            pw.flush();
+                        }
                         break;
                     }
                     case "LOGIN": {
                         String username = buf.readLine();
                         String password = buf.readLine();
-                        System.out.println(username+password);
-                        entrance.database.login(username,password);
-                        pw.println("OK");
-                        pw.flush();
-                        System.out.println("Hej med dig jeg virkede");
+                        System.out.println("Forsøger at login med brugernavn: " + username + " " + password);
+                        Boolean parsed = true;
+                        if (!entrance.database.login(username,password)) {
+                            parsed = false;
+                        }
+                        if (parsed) {
+                            System.out.println("Login af bruger: OK!");
+                            pw.println("OK");
+                            pw.flush();
+                        }
+                        else {
+                            System.out.println("Login af bruger: FAILED!");
+                            pw.println("FAIL");
+                            pw.flush();
+                        }
                         break;
                     }
                     case "REFRESH": {
