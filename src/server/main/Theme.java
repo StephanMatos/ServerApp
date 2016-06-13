@@ -1,7 +1,7 @@
 package server.main;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * Created by Stephan on 06-06-2016.
@@ -33,9 +33,15 @@ public class Theme {
         return this.title;
     }
 
+
+
+
     public Question getRandomQuestion() {
-        int index = randomGenerator.nextInt(this.questionHashMap.size());
-        return this.questionHashMap.get(index);
+
+        List<String> keysAsArray = new ArrayList<String>(this.questionHashMap.keySet());
+        Random r = new Random();
+
+        return this.questionHashMap.get(keysAsArray.get(r.nextInt(keysAsArray.size())));
     }
 
 }
