@@ -43,7 +43,9 @@ public class Board {
     }
 
     public Question getCurrentQuestion(){
+
         return currentQuestion;
+
     }
 
     public User getUser1(){
