@@ -21,7 +21,6 @@ public class Database {
         createTheme("Programmering");
         createTheme("Matematik");
         createTheme("Digital-Kommunikation");
-
     }
 
     public Theme createTheme(String id){
