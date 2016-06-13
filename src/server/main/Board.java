@@ -7,7 +7,7 @@ public class Board {
 
     private User user1,user2;
     private boolean user1answered, user2answered, AcceptedInvitation;
-    private int points1,points2;
+    private int points1,points2, user1totalAnswered, user2totalAnswered;
     private Theme theme;
     private Question currentQuestion;
     private Database database;
