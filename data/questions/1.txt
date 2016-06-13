@@ -1,6 +1,6 @@
 Matematik
-Hvad hedder Hitler til fornavn?
-Adolf
-John
-Jack
-Peter
+Hvad er 9+10?
+19
+21
+910
+1
