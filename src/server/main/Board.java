@@ -13,6 +13,7 @@ public class Board {
     private Database database;
 
 
+
     public Board(User user1, User user2,Database database, Theme theme) {
         this.user1 = user1;
         this.user2 = user2;
@@ -21,6 +22,8 @@ public class Board {
         this.points1 = 0;
         this.points2 = 0;
         this.database = database;
+        this.theme = theme;
+        this.currentQuestion = null;
     }
 
     public void changeTheme(String newtheme) {
@@ -28,7 +31,14 @@ public class Board {
     }
 
     public Question setRandomQuestion() {
-        this.currentQuestion = database.getThemes().get(this.theme).getRandomQuestion();
+
+        System.out.println(database.getThemes()+" SetrandomQuestion 1");
+
+        System.out.println(theme.getTitle()+"lalalalalalalalalalalaallalalalaall");
+
+        System.out.println(theme.getRandomQuestion()+"Denne er null");
+
+        this.currentQuestion = theme.getRandomQuestion();
         return this.currentQuestion;
     }
 

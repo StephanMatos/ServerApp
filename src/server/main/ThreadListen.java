@@ -19,6 +19,7 @@ public class ThreadListen extends Thread {
     private Board currentBoard;
     private String id;
     private Socket ClientSocket;
+    private Theme thema;
 
     public ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
@@ -105,16 +106,20 @@ public class ThreadListen extends Thread {
                         System.out.println("Waiting for theme and user inputs...");
                         String theme = buf.readLine();
                         String user2 = buf.readLine();
-                        System.out.println("Got Theme:" + theme + " - User: " + user2);
+                        String user1 = buf.readLine();
+                        System.out.println("Got Theme:" + theme + " - User: " + user2+"   User 1    "+user1);
                         if(!entrance.database.getUsers().containsKey(user2)){
                             pw.println("User does not exist");
                             pw.flush();
 
                         }else{
-                            String id = String.valueOf(System.currentTimeMillis());
-                            this.currentBoard = entrance.database.CreateBoard(id, this.user.getUsername(), user2, theme);
                             pw.println("OK");
                             pw.flush();
+                            String id = String.valueOf(System.currentTimeMillis());
+                            System.out.println("Dette er ID"+id+"\n Dette er bruger 1"+user1+"\n Dette er bruger 2"+user2+"\n Dette er tema"+theme);
+                            Theme thema = entrance.database.getTheme(theme);
+                            this.currentBoard = entrance.database.CreateBoard(id,user1,user2,thema);
+
                             Question question = currentBoard.setRandomQuestion();
                             String q = question.getQuestion();
                             System.out.println("Sent OK and prepares the question: " + q);
@@ -123,11 +128,7 @@ public class ThreadListen extends Thread {
                             String a2 = arrayList.get(1).toString();
                             String a3 = arrayList.get(2).toString();
                             String a4 = arrayList.get(3).toString();
-                            pw.println(q);
-                            pw.println(a1);
-                            pw.println(a2);
-                            pw.println(a3);
-                            pw.println(a4);
+                            pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4);
                             pw.flush();
                             System.out.println("Question sucessfully sent!");
                         }

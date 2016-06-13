@@ -25,16 +25,17 @@ public class Database {
 
     public Theme createTheme(String id){
 
-        Theme theme = new Theme(id,this);
+        Theme theme = new Theme(id);
         themes.put(id,theme);
+        System.out.println(themes);
 
         return theme;
     }
 
+    public Board CreateBoard(String id, String user1, String user2, Theme theme){
 
-    public Board CreateBoard(String id, String user1, String user2, String theme){
-
-        Board board = new Board(this.getUser(user1),this.getUser(user2),this,this.getTheme(theme));
+        Board board = new Board(this.getUser(user1),this.getUser(user2),this,theme);
+        System.out.println(this.getUser(user1)+""+this.getUser(user2)+""+theme);
         Boards.put(id,board);
         return board;
     }
@@ -77,6 +78,7 @@ public class Database {
     }
 
     public Theme getTheme(String s){
+        System.out.println("string    "+s+"\n"+themes.get(s));
         return themes.get(s);
     }
 
