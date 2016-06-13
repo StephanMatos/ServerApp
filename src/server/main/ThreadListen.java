@@ -91,15 +91,37 @@ public class ThreadListen extends Thread {
                     case "MATCH": {
                         // The answer if the player accepted or denied the game invited to.
                         System.out.println("");
+                        String id = buf.readLine();
                         String answer = buf.readLine();
+                        entrance.database.getBoard(id).userAnswered(this.user);
                         if (Objects.equals(answer, "true")) {
-                            System.out.println("User Accepted!");
+                            entrance.database.getBoard(id).setInvitation(true);
+                            System.out.println("User Accepted invitation!");
+                        }
+                        else {
+                            entrance.database.getBoard(id).setInvitation(false);
+                            System.out.println("User Denied invitation!");
                         }
 
                         break;
                     }
                     case "REFRESH": {
                         // TODO something here
+
+                        // Check if invited to at board
+                        for (String string : entrance.database.getBoards()) {
+                            Board board = entrance.database.getBoard(string);
+                            // check if the board has an invitation to a user
+                            // check if user has already answered the invitation
+                            // check if its the right user
+                            if (board.hasInvitation() && !board.getansweredUser2() && board.getUser2() == this.user) {
+                                // Send/Show invitation to user
+                                pw.println("INVITATION");
+                                pw.println(string);
+                                pw.println(board.getUser1().getUsername());
+                                pw.println(board.getTheme().getTitle());
+                            }
+                        }
                         break;
                     }
                     case "INVITE": {

@@ -6,12 +6,11 @@ package server.main;
 public class Board {
 
     private User user1,user2;
-    private boolean user1answered, user2answered;
+    private boolean user1answered, user2answered, AcceptedInvitation;
     private int points1,points2;
     private Theme theme;
     private Question currentQuestion;
     private Database database;
-
 
 
     public Board(User user1, User user2,Database database, Theme theme) {
@@ -40,6 +39,14 @@ public class Board {
 
         this.currentQuestion = theme.getRandomQuestion();
         return this.currentQuestion;
+    }
+
+    public void setInvitation(boolean b) {
+        this.AcceptedInvitation = b;
+    }
+
+    public boolean hasInvitation() {
+        return AcceptedInvitation;
     }
 
     public Question getCurrentQuestion(){
@@ -74,5 +81,22 @@ public class Board {
     public void resetAnsweredUsers() {
         this.user1answered = false;
         this.user2answered = false;
+    }
+
+    public boolean getansweredUser2() {
+        return this.user2answered;
+    }
+
+    public Theme getTheme() {
+        return this.theme;
+    }
+
+    public void userAnswered(User user) {
+        if(user.equals(user1)){
+            this.user1answered = true;
+        }
+        else {
+            this.user2answered = true;
+        }
     }
 }

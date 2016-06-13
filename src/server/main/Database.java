@@ -1,6 +1,8 @@
 package server.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Database {
 
@@ -8,13 +10,13 @@ public class Database {
 
     private HashMap<String, Theme> themes;
     private HashMap<String, User> users;
-    private HashMap<String,Board> Boards;
+    private HashMap<String, Board> Boards;
 
-    public Database(){
+    public Database() {
 
         users = new HashMap<String, User>();
         themes = new HashMap<String, Theme>();
-        Boards = new HashMap<String,Board>();
+        Boards = new HashMap<String, Board>();
 
         // hard-coded defineret teamer, brugere og spørgsmål
         createTheme("Tele-Datanet");
@@ -23,30 +25,30 @@ public class Database {
         createTheme("Digital-Kommunikation");
     }
 
-    public Theme createTheme(String id){
+    public Theme createTheme(String id) {
 
         Theme theme = new Theme(id);
-        themes.put(id,theme);
+        themes.put(id, theme);
         System.out.println(themes);
 
         return theme;
     }
 
-    public Board CreateBoard(String id, String user1, String user2, Theme theme){
+    public Board CreateBoard(String id, String user1, String user2, Theme theme) {
 
-        Board board = new Board(this.getUser(user1),this.getUser(user2),this,theme);
-        System.out.println(this.getUser(user1)+""+this.getUser(user2)+""+theme);
-        Boards.put(id,board);
+        Board board = new Board(this.getUser(user1), this.getUser(user2), this, theme);
+        System.out.println(this.getUser(user1) + "" + this.getUser(user2) + "" + theme);
+        Boards.put(id, board);
         return board;
     }
 
-    public boolean newUser(String username,String password){
+    public boolean newUser(String username, String password) {
 
-        if(users.containsKey(username)){
+        if (users.containsKey(username)) {
             return false;
         }
-        User user = new User(username,password);
-        users.put(username,user);
+        User user = new User(username, password);
+        users.put(username, user);
         //FileReader.createUserFile(user);
         System.out.println("user created: " + username + " " + password);
         return true;
@@ -56,7 +58,7 @@ public class Database {
         return this.themes;
     }
 
-    public boolean login(String username, String password){
+    public boolean login(String username, String password) {
 
         if (!users.containsKey(username)) {
             System.out.println("User does not exist!");
@@ -69,17 +71,22 @@ public class Database {
         return true;
     }
 
-    public HashMap<String, User> getUsers(){
+    public HashMap<String, User> getUsers() {
         return users;
     }
 
-    public User getUser(String s){
+    public User getUser(String s) {
         return users.get(s);
     }
 
-    public Theme getTheme(String s){
-        System.out.println("string    "+s+"\n"+themes.get(s));
+    public Theme getTheme(String s) {
+        System.out.println("string    " + s + "\n" + themes.get(s));
         return themes.get(s);
+    }
+
+    public List<String> getBoards() {
+        List<String> keysAsArray = new ArrayList<String>(this.Boards.keySet());
+        return keysAsArray;
     }
 
     public Board getBoard(String s ){
