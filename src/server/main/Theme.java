@@ -1,7 +1,9 @@
 package server.main;
 
-import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Stephan on 06-06-2016.
@@ -14,7 +16,7 @@ public class Theme {
     private HashMap<String, Question> questionHashMap;
 
 
-    public Theme(String id, Database database){
+    public Theme(String id){
 
         this.title = id;
         questionHashMap = new HashMap<String, Question>();
@@ -32,9 +34,6 @@ public class Theme {
     public String getTitle() {
         return this.title;
     }
-
-
-
 
     public Question getRandomQuestion() {
 
