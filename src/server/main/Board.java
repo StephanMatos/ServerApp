@@ -11,6 +11,7 @@ public class Board {
     private Theme theme;
     private Question currentQuestion;
     private Database database;
+    private int count1,count2;
 
 
     public Board(User user1, User user2,Database database, Theme theme) {
@@ -23,6 +24,9 @@ public class Board {
         this.database = database;
         this.theme = theme;
         this.currentQuestion = null;
+        this.count1 = 0;
+        this.count2 = 0;
+
     }
 
     public void changeTheme(String newtheme) {
@@ -64,6 +68,7 @@ public class Board {
     }
 
     public Integer givePoint(User user){
+
         if(user.equals(user1)){
             if (!user1answered) {
                 points1++;
@@ -77,6 +82,9 @@ public class Board {
             points2++;
             return points2;
         }
+
+
+
 
     }
 

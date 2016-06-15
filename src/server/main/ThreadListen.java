@@ -20,10 +20,13 @@ public class ThreadListen extends Thread {
     private String id;
     private Socket ClientSocket;
     private Theme thema;
+    private int count1,count2;
 
     public ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
         this.ClientSocket = clientSocket;
+        this.count1 = 1;
+        this.count2 = 1;
 
 
         this.active = true;
@@ -173,11 +176,14 @@ public class ThreadListen extends Thread {
                         else {
                             System.out.println("Wrong answer!");
                         }
-                        pw.println(correctOne);
+
+                        pw.println(correctOne+""+count1);
                         pw.flush();
+                        count1 = count1++;
+
                         break;
                     }
-                    case "NEXT_QUESTION":{
+                    case "NEW QUESTION":{
                         System.out.println("Getting next question! (Could be the same)");
                         Question question = currentBoard.setRandomQuestion();
                         currentBoard.resetAnsweredUsers();
