@@ -169,6 +169,7 @@ public class ThreadListen extends Thread {
                         String answer = buf.readLine();
                         System.out.println("Got answer:" + answer);
                         String correctOne = currentBoard.getCurrentQuestion().getRightAnswer();
+                        System.out.println("The right answer was: " + correctOne);
                         if(Objects.equals(correctOne, answer)) {
                             System.out.println("Correct answer!");
                             currentBoard.givePoint(user);
