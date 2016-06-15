@@ -1,0 +1,6 @@
+Programmering
+Hvad kører 2 for-loops i o-notation?
+n^2
+n
+2n
+n+2

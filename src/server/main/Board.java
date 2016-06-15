@@ -7,7 +7,7 @@ public class Board {
 
     private User user1,user2;
     private boolean user1answered, user2answered, AcceptedInvitation;
-    private int points1,points2, user1totalAnswered, user2totalAnswered;
+    private int points1,points2;
     private Theme theme;
     private Question currentQuestion;
     private Database database;
@@ -97,6 +97,10 @@ public class Board {
         return this.user2answered;
     }
 
+    public boolean getansweredUser1() {
+        return this.user1answered;
+    }
+
     public Theme getTheme() {
         return this.theme;
     }
@@ -108,5 +112,13 @@ public class Board {
         else {
             this.user2answered = true;
         }
+    }
+
+    public int getuser1Points() {
+        return points1;
+    }
+
+    public int getuser2Points() {
+        return points2;
     }
 }
