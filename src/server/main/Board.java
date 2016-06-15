@@ -95,6 +95,14 @@ public class Board {
         this.user2answered = false;
     }
 
+    public void setAnsweredUser1(Boolean b) {
+        this.user1answered = b;
+    }
+
+    public void setAnsweredUser2(Boolean b) {
+        this.user2answered = b;
+    }
+
     public boolean getansweredUser2() {
         return this.user2answered;
     }
