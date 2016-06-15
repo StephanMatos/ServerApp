@@ -4,37 +4,32 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Database {
+class Database {
 
-    private String username;
+    private final HashMap<String, Theme> themes;
+    private final HashMap<String, User> users;
+    private final HashMap<String, Board> Boards;
 
-    private HashMap<String, Theme> themes;
-    private HashMap<String, User> users;
-    private HashMap<String, Board> Boards;
+    Database() {
 
-    public Database() {
+        users = new HashMap<>();
+        themes = new HashMap<>();
+        Boards = new HashMap<>();
 
-        users = new HashMap<String, User>();
-        themes = new HashMap<String, Theme>();
-        Boards = new HashMap<String, Board>();
-
-        // hard-coded defineret teamer, brugere og spørgsmål
+        // hard-coded defined themes
         createTheme("Tele-Datanet");
         createTheme("Programmering");
         createTheme("Matematik");
         createTheme("Digital-Kommunikation");
     }
 
-    public Theme createTheme(String id) {
-
+    private void createTheme(String id) {
         Theme theme = new Theme(id);
         themes.put(id, theme);
         System.out.println(themes);
-
-        return theme;
     }
 
-    public Board CreateBoard(String id, String user1, String user2, Theme theme) {
+    Board CreateBoard(String id, String user1, String user2, Theme theme) {
 
         Board board = new Board(this.getUser(user1), this.getUser(user2), this, theme);
         System.out.println(this.getUser(user1) + "" + this.getUser(user2) + "" + theme);
@@ -42,7 +37,7 @@ public class Database {
         return board;
     }
 
-    public boolean newUser(String username, String password) {
+    boolean newUser(String username, String password) {
 
         if (users.containsKey(username)) {
             return false;
@@ -54,11 +49,7 @@ public class Database {
         return true;
     }
 
-    public HashMap<String, Theme> getThemes() {
-        return this.themes;
-    }
-
-    public boolean login(String username, String password) {
+    boolean login(String username, String password) {
 
         if (!users.containsKey(username)) {
             System.out.println("User does not exist!");
@@ -71,25 +62,24 @@ public class Database {
         return true;
     }
 
-    public HashMap<String, User> getUsers() {
+    HashMap<String, User> getUsers() {
         return users;
     }
 
-    public User getUser(String s) {
+    User getUser(String s) {
         return users.get(s);
     }
 
-    public Theme getTheme(String s) {
+    Theme getTheme(String s) {
         System.out.println("string    " + s + "\n" + themes.get(s));
         return themes.get(s);
     }
 
-    public List<String> getBoards() {
-        List<String> keysAsArray = new ArrayList<String>(this.Boards.keySet());
-        return keysAsArray;
+    List<String> getBoards() {
+        return new ArrayList<>(this.Boards.keySet());
     }
 
-    public Board getBoard(String s ){
+    Board getBoard(String s ){
         return Boards.get(s);
     }
 

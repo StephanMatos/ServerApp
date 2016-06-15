@@ -1,20 +1,16 @@
 package server.main;
 
-/**
- * Created by Mwthorn on 07-06-2016.
- */
-public class Board {
+class Board {
 
-    private User user1,user2;
+    private final User user1;
+    private final User user2;
     private boolean user1answered, user2answered, AcceptedInvitation;
     private int points1,points2;
     private Theme theme;
     private Question currentQuestion;
-    private Database database;
-    private int count1,count2;
+    private final Database database;
 
-
-    public Board(User user1, User user2,Database database, Theme theme) {
+    Board(User user1, User user2,Database database, Theme theme) {
         this.user1 = user1;
         this.user2 = user2;
         this.user1answered = false;
@@ -24,50 +20,38 @@ public class Board {
         this.database = database;
         this.theme = theme;
         this.currentQuestion = null;
-        this.count1 = 0;
-        this.count2 = 0;
-
     }
 
-    public void changeTheme(String newtheme) {
-        this.theme = database.getTheme(newtheme);
+    void changeTheme(String newTheme) {
+        this.theme = database.getTheme(newTheme);
     }
 
-    public Question setRandomQuestion() {
-
-        System.out.println(database.getThemes()+" SetrandomQuestion 1");
-
-        System.out.println(theme.getTitle()+"lalalalalalalalalalalaallalalalaall");
-
-        System.out.println(theme.getRandomQuestion()+"Denne er null");
-
+    Question setRandomQuestion() {
         this.currentQuestion = theme.getRandomQuestion();
         return this.currentQuestion;
     }
 
-    public void setInvitation(boolean b) {
+    void setInvitation(boolean b) {
         this.AcceptedInvitation = b;
     }
 
-    public boolean hasInvitation() {
+    boolean hasInvitation() {
         return AcceptedInvitation;
     }
 
-    public Question getCurrentQuestion(){
-
+    Question getCurrentQuestion(){
         return currentQuestion;
-
     }
 
-    public User getUser1(){
+    User getUser1(){
         return user1;
     }
 
-    public User getUser2(){
+    User getUser2(){
         return  user2;
     }
 
-    public Integer givePoint(User user){
+    Integer givePoint(User user){
 
         if(user.equals(user1)){
             if (!user1answered) {
@@ -83,37 +67,22 @@ public class Board {
             return points2;
         }
 
-
-
-
     }
 
-    public void resetAnsweredUsers() {
-        this.user1answered = false;
-        this.user2answered = false;
+    boolean getUserAnswered(User user) {
+        if(user.equals(user1)){
+            return this.user1answered;
+        }
+        else {
+            return this.user2answered;
+        }
     }
 
-    public void setAnsweredUser1(Boolean b) {
-        this.user1answered = b;
-    }
-
-    public void setAnsweredUser2(Boolean b) {
-        this.user2answered = b;
-    }
-
-    public boolean getansweredUser2() {
-        return this.user2answered;
-    }
-
-    public boolean getansweredUser1() {
-        return this.user1answered;
-    }
-
-    public Theme getTheme() {
+    Theme getTheme() {
         return this.theme;
     }
 
-    public void userAnswered(User user) {
+    void userAnswered(User user) {
         if(user.equals(user1)){
             this.user1answered = true;
         }
@@ -122,11 +91,12 @@ public class Board {
         }
     }
 
-    public int getuser1Points() {
-        return points1;
-    }
-
-    public int getuser2Points() {
-        return points2;
+    void setAnsweredUser(User user, boolean b) {
+        if(user.equals(user1)){
+            this.user1answered = b;
+        }
+        else {
+            this.user2answered = b;
+        }
     }
 }

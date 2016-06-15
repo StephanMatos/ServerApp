@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class ThreadListen extends Thread {
+class ThreadListen extends Thread {
 
     private User user;
     private BufferedReader buf;
@@ -17,12 +17,10 @@ public class ThreadListen extends Thread {
     private boolean active;
     private Entrance entrance;
     private Board currentBoard;
-    private String id;
     private Socket ClientSocket;
-    private Theme thema;
     private int count1,count2;
 
-    public ThreadListen( Socket clientSocket, Entrance entrance){
+    ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
         this.ClientSocket = clientSocket;
         this.count1 = 1;
@@ -113,13 +111,16 @@ public class ThreadListen extends Thread {
                     case "REFRESH": {
                         // TODO something here
 
+                        // Check if a board is finished
+                        // Show results
+
                         // Check if invited to at board
                         for (String string : entrance.database.getBoards()) {
                             Board board = entrance.database.getBoard(string);
                             // check if the board has an invitation to a user
                             // check if user has already answered the invitation
                             // check if its the right user
-                            if (board.hasInvitation() && !board.getansweredUser2() && board.getUser2() == this.user) {
+                            if (board.hasInvitation() && !board.getUserAnswered(board.getUser2()) && board.getUser2() == this.user) {
                                 // Send/Show invitation to user
                                 pw.println("INVITATION");
                                 pw.println(string);
@@ -127,6 +128,7 @@ public class ThreadListen extends Thread {
                                 pw.println(board.getTheme().getTitle());
                             }
                         }
+                        pw.println("END");
                         break;
                     }
                     case "INVITE": {
@@ -193,7 +195,7 @@ public class ThreadListen extends Thread {
                     case "NEW QUESTION":{
                         System.out.println("Getting next question! (Could be the same)");
                         Question question = currentBoard.setRandomQuestion();
-                        currentBoard.resetAnsweredUsers();
+                        currentBoard.setAnsweredUser(this.user, false);
                         String q = question.getQuestion();
                         ArrayList arrayList = question.getAnswers();
                         String a1 = arrayList.get(0).toString();

@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Entrance {
 
-    public Database database;
+    Database database;
 
     private ServerSocket server = null;
 
@@ -19,7 +19,7 @@ public class Entrance {
 
     }
 
-    public Entrance(){
+    private Entrance(){
         this.database = new Database();
 
         try {
@@ -49,6 +49,7 @@ public class Entrance {
                 clientSocket = server.accept();
                 System.out.println("User connected");
             }catch (IOException e){
+                active = false;
                 System.out.println("Could not connect user");
             }
             ThreadListen thread = new ThreadListen(clientSocket,this);
