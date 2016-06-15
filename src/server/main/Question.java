@@ -42,7 +42,7 @@ public class Question {
     }
 
     public String getRightAnswer() {
-        return this.answer4;
+        return this.answer1;
     }
 
 }
