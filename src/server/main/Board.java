@@ -24,8 +24,6 @@ public class Board {
         this.database = database;
         this.theme = theme;
         this.currentQuestion = null;
-        this.count1 = 0;
-        this.count2 = 0;
 
     }
 
@@ -83,9 +81,13 @@ public class Board {
             return points2;
         }
 
+    }
 
-
-
+    public Integer Point1(){
+        return points1;
+    }
+    public Integer Point2(){
+        return points2;
     }
 
     public void resetAnsweredUsers() {

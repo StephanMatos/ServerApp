@@ -209,6 +209,14 @@ public class ThreadListen extends Thread {
                         System.out.println("Suceesfully sent question!");
                         break;
                     }
+                    case"UPDATE":{
+                        System.out.println(user+"\n"+currentBoard.getUser2()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
+                        pw.println(user+"\n"+currentBoard.getUser2()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
+                        pw.flush();
+
+
+                        break;
+                    }
                     case"LOGOUT":{
                         pw.close();
                         buf.close();
