@@ -1,6 +1,6 @@
-Programmering
-Hvad står JDK for?
-Java Development Kit
-Java Devolution Kit
-Jar Developer Kit
-Java Developer Kit
+Matematik
+Hvad er stamfunktionen af ln(x)?
+x*ln(x)-x
+1/x
+x^2
+x*ln(x)
