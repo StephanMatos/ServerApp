@@ -78,6 +78,14 @@ class Board {
         }
     }
 
+    int getPoints1() {
+        return this.points1;
+    }
+
+    int getPoints2() {
+        return this.points2;
+    }
+
     Theme getTheme() {
         return this.theme;
     }

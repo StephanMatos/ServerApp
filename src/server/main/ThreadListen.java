@@ -20,6 +20,7 @@ class ThreadListen extends Thread {
     private Socket ClientSocket;
     private int count1,count2;
 
+
     ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
         this.ClientSocket = clientSocket;
@@ -157,7 +158,7 @@ class ThreadListen extends Thread {
                             String a2 = arrayList.get(1).toString();
                             String a3 = arrayList.get(2).toString();
                             String a4 = arrayList.get(3).toString();
-                            pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
+                            pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                             pw.flush();
                             System.out.println("Question sucessfully sent!");
                         }
@@ -202,14 +203,14 @@ class ThreadListen extends Thread {
                         String a2 = arrayList.get(1).toString();
                         String a3 = arrayList.get(2).toString();
                         String a4 = arrayList.get(3).toString();
-                        pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
+                        pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                         pw.flush();
                         System.out.println("Suceesfully sent question!");
                         break;
                     }
                     case"UPDATE":{
-                        System.out.println(user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
-                        pw.println(user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.Point1()+"\n"+currentBoard.Point2());
+                        System.out.println(user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
+                        pw.println(user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                         pw.flush();
 
 
