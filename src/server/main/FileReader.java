@@ -51,6 +51,9 @@ class FileReader {
 
     static void createUserFile(User user) {
         String ID = user.getUsername() + ".txt";
+        if (new File("data/users/" + ID).exists()) {
+            return;
+        }
         File chatFile = new File("data/users/" + ID);
         try {
             FileWriter outFile = new FileWriter(chatFile, true);
@@ -67,5 +70,6 @@ class FileReader {
         } catch (IOException e) {
             System.out.println("Failed creating file:" + ID);
         }
+
     }
 }
