@@ -1,6 +1,6 @@
 Digital-Kommunikation
-Hvad kan du bruge Digital til?
-Din fremtid
-Redde verden
-Skabe kaos
-Intet
+Hvordan ser en Sinc funktion i tid ud i frekvensdomænet?
+Firkant-puls
+Sinc-puls
+Trekant-puls
+Man kan ikke skifte fra tid til frekvens

@@ -1,6 +1,6 @@
 Matematik
-Hvad er 9+10?
-19
-21
-910
-1
+Hvad er kvadratroden af -25?
+5I
+5
+-5
+5-I

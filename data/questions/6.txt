@@ -1,0 +1,6 @@
+Digital-Kommunikation
+Hvor ofte skal der samples for at kunne genskabe et signal ?
+2 * Frekvens
+6 * Frekvens
+8 * Frekvens
+4 * Frekvens

@@ -1,5 +1,5 @@
 Programmering
-Hvilket sprog er det mest brugte?
+Hvilket sprog er det mest anvendte?
 Java
 Python
 Maple

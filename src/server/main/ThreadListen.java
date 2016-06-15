@@ -69,6 +69,7 @@ public class ThreadListen extends Thread {
                             pw.println("FAIL");
                             pw.flush();
                         }
+                        this.user = entrance.database.getUser(username);
                         break;
                     }
                     case "LOGIN": {
@@ -89,6 +90,7 @@ public class ThreadListen extends Thread {
                             pw.println("FAIL");
                             pw.flush();
                         }
+                        this.user = entrance.database.getUser(username);
                         break;
                     }
                     case "MATCH": {
@@ -172,15 +174,19 @@ public class ThreadListen extends Thread {
                         System.out.println("The right answer was: " + correctOne);
                         if(Objects.equals(correctOne, answer)) {
                             System.out.println("Correct answer!");
+                            System.out.println(user);
                             currentBoard.givePoint(user);
                         }
                         else {
                             System.out.println("Wrong answer!");
                         }
 
-                        pw.println(correctOne+""+count1);
+                        System.out.println(correctOne);
+                        System.out.println(count1+"FØR");
+                        pw.println(correctOne+"\n"+count1);
                         pw.flush();
-                        count1 = count1++;
+                        count1 = count1+1;
+                        System.out.println(count1+"Efter");
 
                         break;
                     }
