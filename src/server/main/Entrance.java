@@ -31,7 +31,6 @@ public class Entrance {
             e.printStackTrace();
         }
 
-
         try{
             server = new ServerSocket(2048);
 

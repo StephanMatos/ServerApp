@@ -53,13 +53,6 @@ class FileReader {
         String ID = user.getUsername() + ".txt";
         File chatFile = new File("data/users/" + ID);
         try {
-            if (chatFile.createNewFile()) {
-                System.out.println("Successfully created new file:" + ID);
-            }
-        } catch (IOException e) {
-            System.out.println("Failed creating file:" + ID);
-        }
-        try {
             FileWriter outFile = new FileWriter(chatFile, true);
             PrintWriter out = new PrintWriter(outFile);
 
@@ -68,8 +61,10 @@ class FileReader {
             out.close();
             outFile.close();
 
-        }
-        catch (Exception e) {
+            if (chatFile.createNewFile()) {
+                System.out.println("Successfully created new file:" + ID);
+            }
+        } catch (IOException e) {
             System.out.println("Failed creating file:" + ID);
         }
     }
