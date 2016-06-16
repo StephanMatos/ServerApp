@@ -173,7 +173,7 @@ class ThreadListen extends Thread {
                             String a4 = arrayList.get(3).toString();
                             pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                             pw.flush();
-                            System.out.println("Question sucessfully sent!");
+                            System.out.println("Question successfully sent!");
                         }
                         break;
                     }
@@ -219,7 +219,7 @@ class ThreadListen extends Thread {
                         String a4 = arrayList.get(3).toString();
                         pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                         pw.flush();
-                        System.out.println("Suceesfully sent question!");
+                        System.out.println("Successfully sent question!");
                         break;
                     }
                     case"UPDATE":{
