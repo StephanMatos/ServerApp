@@ -183,7 +183,6 @@ class ThreadListen extends Thread {
                         else {
                             System.out.println("Wrong answer!");
                         }
-
                         System.out.println(correctOne);
                         currentBoard.increaseCounter(this.user);
                         this.count1 = currentBoard.getCounter(this.user);
