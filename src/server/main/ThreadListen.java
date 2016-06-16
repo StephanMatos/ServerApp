@@ -106,6 +106,31 @@ class ThreadListen extends Thread {
                         }
                         break;
                     }
+                    case "GETBOARD": {
+                        for (String string : entrance.database.getBoards()) {
+                            System.out.println("Checking for Board ID: " + string);
+                            Board board = entrance.database.getBoard(string);
+                            if (board.getUser1() == this.user || board.getUser2() == this.user) {
+                                System.out.println("This board has the user!");
+                                if (board.getUser1() == this.user) {
+                                    System.out.println("You are user 1 on this board. Sending user 2...");
+                                    pw.println(board.getUser2().getUsername());
+                                    pw.println(board.getPoints1());
+                                    pw.println(board.getPoints2());
+                                    System.out.println(board.getUser2().getUsername() + " " + board.getPoints1() + " " + board.getPoints2());
+                                } else if (board.getUser2() == this.user) {
+                                    System.out.println("You are user 2 on this board. Sending user 1...");
+                                    pw.println(board.getUser1().getUsername());
+                                    pw.println(board.getPoints2());
+                                    pw.println(board.getPoints1());
+                                    System.out.println(board.getUser1().getUsername() + " " + board.getPoints2() + " " + board.getPoints1());
+                                }
+                                pw.flush();
+                            }
+                        }
+                        pw.println("END");
+                        break;
+                    }
                     case "GETINVITE": {
                         // Check if invited to at board
                         for (String string : entrance.database.getBoards()) {
