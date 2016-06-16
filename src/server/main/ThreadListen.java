@@ -18,14 +18,11 @@ class ThreadListen extends Thread {
     private Entrance entrance;
     private Board currentBoard;
     private Socket ClientSocket;
-    private int count1,count2;
 
 
     ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
         this.ClientSocket = clientSocket;
-        this.count1 = 0;
-        this.count2 = 0;
 
         this.active = true;
         try {
@@ -202,7 +199,7 @@ class ThreadListen extends Thread {
                         currentBoard.setAnsweredUser(this.user, true);
                         System.out.println(correctOne);
                         currentBoard.increaseCounter(this.user);
-                        this.count1 = currentBoard.getCounter(this.user);
+                        int count1 = currentBoard.getCounter(this.user);
                         System.out.println(count1+"FØR");
                         pw.println(correctOne+"\n"+count1);
                         pw.flush();
