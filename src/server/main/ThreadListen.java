@@ -96,7 +96,6 @@ class ThreadListen extends Thread {
                         System.out.println("");
                         String id = buf.readLine();
                         String answer = buf.readLine();
-                        entrance.database.getBoard(id).userAnswered(this.user);
                         if (Objects.equals(answer, "true")) {
                             entrance.database.getBoard(id).setInvitation(true);
                             System.out.println("User Accepted invitation!");
