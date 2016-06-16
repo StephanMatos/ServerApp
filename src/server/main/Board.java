@@ -5,7 +5,7 @@ class Board {
     private final User user1;
     private final User user2;
     private boolean user1answered, user2answered, AcceptedInvitation;
-    private int points1,points2;
+    private int points1,points2, counter1, counter2;
     private Theme theme;
     private Question currentQuestion;
     private final Database database;
@@ -17,6 +17,8 @@ class Board {
         this.user2answered = false;
         this.points1 = 0;
         this.points2 = 0;
+        this.counter1 = 0;
+        this.counter2 = 0;
         this.database = database;
         this.theme = theme;
         this.currentQuestion = null;
@@ -105,6 +107,24 @@ class Board {
         }
         else {
             this.user2answered = b;
+        }
+    }
+
+    void increaseCounter(User user) {
+        if(user.equals(user1)){
+            this.counter1++;
+        }
+        else {
+            this.counter2++;
+        }
+    }
+
+    int getCounter(User user) {
+        if(user.equals(user1)){
+            return this.counter1;
+        }
+        else {
+            return this.counter2;
         }
     }
 }

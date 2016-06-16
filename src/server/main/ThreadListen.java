@@ -24,8 +24,8 @@ class ThreadListen extends Thread {
     ThreadListen( Socket clientSocket, Entrance entrance){
         this.entrance = entrance;
         this.ClientSocket = clientSocket;
-        this.count1 = 1;
-        this.count2 = 1;
+        this.count1 = 0;
+        this.count2 = 0;
 
 
         this.active = true;
@@ -185,10 +185,11 @@ class ThreadListen extends Thread {
                         }
 
                         System.out.println(correctOne);
+                        this.count1 = currentBoard.getCounter(this.user);
                         System.out.println(count1+"FØR");
                         pw.println(correctOne+"\n"+count1);
                         pw.flush();
-                        count1 = count1+1;
+                        currentBoard.increaseCounter(this.user);
                         System.out.println(count1+"Efter");
 
                         break;
