@@ -185,11 +185,11 @@ class ThreadListen extends Thread {
                         }
 
                         System.out.println(correctOne);
+                        currentBoard.increaseCounter(this.user);
                         this.count1 = currentBoard.getCounter(this.user);
                         System.out.println(count1+"FØR");
                         pw.println(correctOne+"\n"+count1);
                         pw.flush();
-                        currentBoard.increaseCounter(this.user);
                         System.out.println(count1+"Efter");
 
                         break;
