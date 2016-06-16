@@ -27,7 +27,6 @@ class ThreadListen extends Thread {
         this.count1 = 0;
         this.count2 = 0;
 
-
         this.active = true;
         try {
             this.buf = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -106,24 +105,17 @@ class ThreadListen extends Thread {
                             entrance.database.getBoard(id).setInvitation(false);
                             System.out.println("User Denied invitation!");
                         }
-
                         break;
                     }
-                    case "REFRESH": {
-                        // TODO something here
-
-                        // Check if a board is finished
-                        // Show results
-
+                    case "GETINVITE": {
                         // Check if invited to at board
                         for (String string : entrance.database.getBoards()) {
                             Board board = entrance.database.getBoard(string);
                             // check if the board has an invitation to a user
                             // check if user has already answered the invitation
                             // check if its the right user
-                            if (board.hasInvitation() && !board.getUserAnswered(board.getUser2()) && board.getUser2() == this.user) {
+                            if (board.hasInvitation() && board.getUser2() == this.user) {
                                 // Send/Show invitation to user
-                                pw.println("INVITATION");
                                 pw.println(string);
                                 pw.println(board.getUser1().getUsername());
                                 pw.println(board.getTheme().getTitle());
@@ -183,6 +175,7 @@ class ThreadListen extends Thread {
                         else {
                             System.out.println("Wrong answer!");
                         }
+                        currentBoard.setAnsweredUser(this.user, true);
                         System.out.println(correctOne);
                         currentBoard.increaseCounter(this.user);
                         this.count1 = currentBoard.getCounter(this.user);

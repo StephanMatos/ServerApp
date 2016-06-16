@@ -4,7 +4,7 @@ class Board {
 
     private final User user1;
     private final User user2;
-    private boolean user1answered, user2answered, AcceptedInvitation;
+    private boolean user1answered, user2answered, acceptedInvitation, invitationAnswered;
     private int points1,points2, counter1, counter2;
     private Theme theme;
     private Question currentQuestion;
@@ -22,6 +22,7 @@ class Board {
         this.database = database;
         this.theme = theme;
         this.currentQuestion = null;
+        this.invitationAnswered = false;
     }
 
     void changeTheme(String newTheme) {
@@ -34,11 +35,16 @@ class Board {
     }
 
     void setInvitation(boolean b) {
-        this.AcceptedInvitation = b;
+        this.invitationAnswered = true;
+        this.acceptedInvitation = b;
+    }
+
+    boolean getInvitation() {
+        return this.acceptedInvitation;
     }
 
     boolean hasInvitation() {
-        return AcceptedInvitation;
+        return !invitationAnswered;
     }
 
     Question getCurrentQuestion(){
