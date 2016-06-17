@@ -1,0 +1,6 @@
+Programmering
+Hvilket Java ord er ikke reseveret?
+string
+main
+super
+public
