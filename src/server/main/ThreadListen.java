@@ -227,7 +227,7 @@ class ThreadListen extends Thread {
                         String a2 = arrayList.get(1).toString();
                         String a3 = arrayList.get(2).toString();
                         String a4 = arrayList.get(3).toString();
-                        pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+user.getUsername()+"\n"+currentBoard.getUser2().getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
+                        pw.println(q+"\n"+a1+"\n"+a2+"\n"+a3+"\n"+a4+"\n"+currentBoard.getUser1().getUsername()+"\n"+user.getUsername()+"\n"+currentBoard.getPoints1()+"\n"+currentBoard.getPoints2());
                         pw.flush();
                         System.out.println("Successfully sent question!");
                         break;
