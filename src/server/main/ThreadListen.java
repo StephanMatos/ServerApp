@@ -122,10 +122,10 @@ class ThreadListen extends Thread {
                                     pw.println(board.getPoints1());
                                     System.out.println(board.getUser1().getUsername() + " " + board.getPoints2() + " " + board.getPoints1());
                                 }
-                                pw.flush();
                             }
                         }
                         pw.println("END");
+                        pw.flush();
                         break;
                     }
                     case "GETINVITE": {
@@ -204,6 +204,7 @@ class ThreadListen extends Thread {
                         System.out.println(count1+"FØR");
                         pw.println(correctOne+"\n"+count1);
                         pw.flush();
+                        count1 = count1+1;
                         System.out.println(count1+"Efter");
 
                         break;
