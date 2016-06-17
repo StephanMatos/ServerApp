@@ -107,7 +107,8 @@ class ThreadListen extends Thread {
                         String id = buf.readLine();
                         System.out.println("Setting board to: " + id);
                         this.currentBoard = entrance.database.getBoard(id);
-                        System.out.println("OK (You now need to call NEW QUESTION in order to get a question for this board)");
+                        System.out.println("OK! (You now need to call NEW QUESTION in order to get a question for this board)");
+                        break;
                     }
                     case "GETBOARD": {
                         for (String string : entrance.database.getBoards()) {
