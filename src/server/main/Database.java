@@ -31,7 +31,7 @@ class Database {
 
     Board CreateBoard(String id, String user1, String user2, Theme theme) {
 
-        Board board = new Board(this.getUser(user1), this.getUser(user2), this, theme);
+        Board board = new Board(this.getUser(user1), this.getUser(user2), this, theme, id);
         System.out.println(this.getUser(user1) + "" + this.getUser(user2) + "" + theme);
         Boards.put(id, board);
         return board;

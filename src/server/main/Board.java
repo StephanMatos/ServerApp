@@ -2,15 +2,16 @@ package server.main;
 
 class Board {
 
-    private final User user1;
-    private final User user2;
+    private User user1;
+    private User user2;
     private boolean user1answered, user2answered, acceptedInvitation, invitationAnswered;
     private int points1,points2, counter1, counter2;
     private Theme theme;
     private Question currentQuestion;
-    private final Database database;
+    private Database database;
+    private String id;
 
-    Board(User user1, User user2,Database database, Theme theme) {
+    Board(User user1, User user2,Database database, Theme theme, String id) {
         this.user1 = user1;
         this.user2 = user2;
         this.user1answered = false;
@@ -23,6 +24,7 @@ class Board {
         this.theme = theme;
         this.currentQuestion = null;
         this.invitationAnswered = false;
+        this.id = id;
     }
 
     void changeTheme(String newTheme) {
@@ -132,5 +134,9 @@ class Board {
         else {
             return this.counter2;
         }
+    }
+
+    public String getID() {
+        return this.id;
     }
 }

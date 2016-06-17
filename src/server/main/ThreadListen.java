@@ -103,6 +103,12 @@ class ThreadListen extends Thread {
                         }
                         break;
                     }
+                    case "SETBOARD": {
+                        String id = buf.readLine();
+                        System.out.println("Setting board to: " + id);
+                        this.currentBoard = entrance.database.getBoard(id);
+                        System.out.println("OK (You now need to call NEW QUESTION in order to get a question for this board)");
+                    }
                     case "GETBOARD": {
                         for (String string : entrance.database.getBoards()) {
                             System.out.println("Checking for Board ID: " + string);
@@ -120,6 +126,7 @@ class ThreadListen extends Thread {
                                     pw.println(board.getUser1().getUsername());
                                     pw.println(board.getPoints2());
                                     pw.println(board.getPoints1());
+                                    pw.println(board.getID());
                                     System.out.println(board.getUser1().getUsername() + " " + board.getPoints2() + " " + board.getPoints1());
                                 }
                             }
