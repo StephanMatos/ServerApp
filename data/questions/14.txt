@@ -1,0 +1,6 @@
+Programmering
+Hvad skal main input metoden have i Java?
+main(String[] args)
+main()
+main(String args)
+main(String<>() args)

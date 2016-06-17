@@ -1,0 +1,6 @@
+Programmering
+Hvor mange bits er "int MAX_VALUE"?
+32 bits
+16 bits
+64 bits
+8 bits

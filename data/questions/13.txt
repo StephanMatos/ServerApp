@@ -1,0 +1,6 @@
+Programmering
+Hvad skal et object klasse have?
+Constructor
+Main
+Instance
+Header
