@@ -73,7 +73,6 @@ class Board {
             if (!user2answered) {
                 points2++;
             }
-            points2++;
             return points2;
         }
 
