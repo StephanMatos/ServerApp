@@ -143,6 +143,7 @@ class ThreadListen extends Thread {
                             }
                         }
                         pw.println("END");
+                        pw.flush();
                         break;
                     }
                     case "INVITE": {
