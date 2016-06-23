@@ -3,11 +3,11 @@ package server.main;
 import java.util.ArrayList;
 import java.util.Collections;
 
-class Question {
+class Question{
 
     private String question, answer1,answer2,answer3,answer4;
 
-    Question(String q,String a1, String a2, String a3, String a4){
+    public Question(String q, String a1, String a2, String a3, String a4){
 
         this.question = q;
         this.answer1 = a1;
